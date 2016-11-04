@@ -260,21 +260,10 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
                   sCopy.data.push(ptNew);
                   if (angular.equals(sCopy, s)) {
                     chartSeries.addPoint(ptNew, false);
+                  } else {
+                    chartSeries.setData(angular.copy(s.data), false);
                   }
-                  
-                  // Check if the data change was a push and shift operation
-                  // If so, call addPoint WITH shifting
-                  else {
-                    sCopy.data.shift();
-                    if (angular.equals(sCopy, s)) {
-                      chartSeries.addPoint(ptNew, false, true);
-                    }
-                    else {
-                      chartSeries.setData(angular.copy(s.data), false);
-                    }
-                  }
-                }
-                else {
+                } else {
                   chartSeries.setData(angular.copy(s.data), false);
                 }
               }
